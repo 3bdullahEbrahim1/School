@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0056b3;">
+    <a class="navbar-brand" href="index.html">Global Vision School</a>
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="">
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        
+            <li class="nav-item">
+                <a class="nav-link" href="payments.html" id="#payment">payment</a>
+                <a class="nav-link" href="information.html" id="#information">information</a>
+                <a class="nav-link" href="admission.html" id="#admission">admission</a>
+                <a class="nav-link" href="ContactUs.html" id="#contactUs">contactUs</a>
+              </li>
+        
+        </ul>
+    </div>
+
+</nav>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Global Vision School</title>
+  <script>
+    function validateForm() {
+      var studentName = document.getElementById("studentName").value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var dob = document.getElementById("dob").value;
+      var grade = document.getElementById("grade").value;
+      var contactNumber = document.getElementById("contactNumber").value;
+      var email = document.getElementById("email").value;
+
+      if (studentName === "" || !gender || dob === "" || grade === "" || contactNumber === "" || email === "") {
+        alert("All fields are required");
+        return false;
+      }
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Invalid email format");
+        return false;
+      }
+      if (isNaN(contactNumber)) {
+        alert("Invalid contact number");
+        return false;
+      }
+      // If all validation passes, show success message and simulate flight animation
+      document.getElementById("successMessage").innerText = "Registration has been completed successfully";
+      document.getElementById("successMessage").style.display = "block";
+      document.getElementById("submitButton").classList.add("fly");
+
+      // Delay the form submission for demonstration purposes
+      setTimeout(() => {
+        document.getElementById("submitButton").type = "text";
+        document.getElementById("submitButton").value = "Submitting...";
+        document.getElementById("submitButton").disabled = true;
+        document.getElementById("submitButton").classList.remove("fly");
+        document.getElementById("admissionForm").submit();
+      }, 2000);
+
+      return false; // Prevents the default form submission
+    }
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navbar content -->
+  </nav>
+  <section class="contact-form">
+    <h1>Admission</h1>
+    <form id="admissionForm" action="submit.php" method="post" onsubmit="return validateForm()">
+      <!-- Student Name -->
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" name="studentName" required><br>
+      <!-- Gender -->
+      <label>Gender:</label>
+      <input type="radio" id="male" name="gender" value="male" required>
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" required>
+      <label for="female">Female</label><br>
+      <!-- Date of Birth -->
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required><br>
+      <!-- Grade -->
+      <label for="grade">Grade:</label>
+      <input type="text" id="grade" name="grade" required><br>
+      <!-- Contact Number -->
+      <label for="contactNumber">Contact Number:</label>
+      <input type="tel" id="contactNumber" name="contactNumber" required><br>
+      <!-- Email -->
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required><br>
+      <!-- Comment -->
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+      <!-- Success Message -->
+      <p id="successMessage" style="display: none; color: green;"></p>
+      <!-- Submit Button -->
+      <input type="submit" id="submitButton" value="Submit">
+    </form>
+  </section>
+</body>
+</html>
